@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – NEXUS Tech Club</title>
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<nav>
+  <a class="nav-brand" href="/index.html">
+    <div class="nav-logo">NX</div>
+    <span class="nav-name">NEXUS Club</span>
+  </a>
+  <div class="nav-links">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/events.html">Events</a>
+    <a href="/team.html">Team</a>
+    <a href="/gallery.html" class="active">Gallery</a>
+    <a href="/join.html">Join Us</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <a class="nav-cta" href="/join.html">Join the Club →</a>
+  <button class="hamburger" onclick="toggleMobile()" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/index.html">Home</a>
+  <a href="/about.html">About</a>
+  <a href="/events.html">Events</a>
+  <a href="/team.html">Team</a>
+  <a href="/gallery.html" class="active">Gallery</a>
+  <a href="/join.html">Join Us</a>
+  <a href="/contact.html">Contact</a>
+</div>
+
+<!-- ============================================================ -->
+<!--                       GALLERY PAGE                           -->
+<!-- ============================================================ -->
+<main class="page active">
+
+  <section class="gallery-hero">
+    <div class="section-label" style="margin:0 auto 1rem">Gallery</div>
+    <h1 class="section-title">Captured Moments</h1>
+    <p class="section-subtitle" style="margin:0.75rem auto">Relive the energy, creativity, and innovation from our events and activities.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery-filter">
+        <button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
+        <button class="filter-btn" onclick="filterGallery('hackathon',this)">Hackathons</button>
+        <button class="filter-btn" onclick="filterGallery('workshop',this)">Workshops</button>
+        <button class="filter-btn" onclick="filterGallery('talk',this)">Tech Talks</button>
+        <button class="filter-btn" onclick="filterGallery('team',this)">Team Events</button>
+      </div>
+      <div class="gallery-masonry" id="galleryGrid">
+        <div class="gallery-item" data-cat="hackathon" onclick="openLightbox('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop','NEXUS HackSprint 3.0','Hackathon · December 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=400&fit=crop" alt="HackSprint 3.0" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">HackSprint 3.0</div><div class="gallery-overlay-cat">Hackathon</div></div>
+        </div>
+        <div class="gallery-item" data-cat="workshop" onclick="openLightbox('https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=600&fit=crop','Web Dev Workshop','Workshop · February 2025')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=500&h=400&fit=crop" alt="Web Dev Workshop" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Web Dev Workshop</div><div class="gallery-overlay-cat">Workshop</div></div>
+        </div>
+        <div class="gallery-item" data-cat="talk" onclick="openLightbox('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop','Cybersecurity Seminar','Tech Talk · January 2025')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&h=400&fit=crop" alt="Cybersecurity Seminar" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Cybersecurity Seminar</div><div class="gallery-overlay-cat">Tech Talk</div></div>
+        </div>
+        <div class="gallery-item" data-cat="team" onclick="openLightbox('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop','Team Offsite 2024','Team Event · August 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&h=400&fit=crop" alt="Team Offsite 2024" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Team Offsite 2024</div><div class="gallery-overlay-cat">Team Event</div></div>
+        </div>
+        <div class="gallery-item" data-cat="workshop" onclick="openLightbox('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop','Cloud Workshop','Workshop · November 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&h=400&fit=crop" alt="Cloud Workshop" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Cloud Workshop</div><div class="gallery-overlay-cat">Workshop</div></div>
+        </div>
+        <div class="gallery-item" data-cat="hackathon" onclick="openLightbox('https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=800&h=600&fit=crop','Idea Pitching','Hackathon · December 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=500&h=400&fit=crop" alt="Idea Pitching" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Idea Pitching</div><div class="gallery-overlay-cat">Hackathon</div></div>
+        </div>
+        <div class="gallery-item" data-cat="talk" onclick="openLightbox('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop','Open Source Talk','Tech Talk · April 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=500&h=400&fit=crop" alt="Open Source Talk" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Open Source Talk</div><div class="gallery-overlay-cat">Tech Talk</div></div>
+        </div>
+        <div class="gallery-item" data-cat="team" onclick="openLightbox('https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&h=600&fit=crop','Networking Night','Team Event · September 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=500&h=400&fit=crop" alt="Networking Night" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Networking Night</div><div class="gallery-overlay-cat">Team Event</div></div>
+        </div>
+        <div class="gallery-item" data-cat="workshop" onclick="openLightbox('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop','UI/UX Design Sprint','Workshop · October 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=400&fit=crop" alt="UI/UX Design Sprint" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">UI/UX Design Sprint</div><div class="gallery-overlay-cat">Workshop</div></div>
+        </div>
+        <div class="gallery-item" data-cat="hackathon" onclick="openLightbox('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop','Award Ceremony','Hackathon · December 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&h=400&fit=crop" alt="Award Ceremony" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Award Ceremony</div><div class="gallery-overlay-cat">Hackathon</div></div>
+        </div>
+        <div class="gallery-item" data-cat="team" onclick="openLightbox('https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop','Freshers Meetup','Team Event · July 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=500&h=400&fit=crop" alt="Freshers Meetup" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">Freshers Meetup</div><div class="gallery-overlay-cat">Team Event</div></div>
+        </div>
+        <div class="gallery-item" data-cat="talk" onclick="openLightbox('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop','AI Demo Day','Tech Talk · March 2024')">
+          <div class="gallery-item-inner"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=400&fit=crop" alt="AI Demo Day" /></div>
+          <div class="gallery-overlay"><div class="gallery-overlay-title">AI Demo Day</div><div class="gallery-overlay-cat">Tech Talk</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content" id="lightboxContent">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <img id="lightboxImg" src="" alt="" style="width:100%;max-height:60vh;object-fit:cover" />
+      <div class="lightbox-info">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxSub" style="color:var(--text2);margin-top:4px"></p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a class="nav-brand" href="/index.html">
+        <div class="nav-logo">NX</div>
+        <span class="nav-name">NEXUS Club</span>
+      </a>
+      <p class="footer-brand-desc">A student-driven technology and innovation community at APEX University. Building the next generation of creators, thinkers, and leaders.</p>
+      <div class="footer-social">
+        <a class="social-icon" title="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></a>
+        <a class="social-icon" title="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+        <a class="social-icon" title="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg></a>
+        <a class="social-icon" title="Twitter"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a class="social-icon" title="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <a href="/index.html">Home</a>
+      <a href="/about.html">About Us</a>
+      <a href="/events.html">Events</a>
+      <a href="/gallery.html">Gallery</a>
+    </div>
+    <div class="footer-col">
+      <h5>Get Involved</h5>
+      <a href="/team.html">Our Team</a>
+      <a href="/join.html">Join the Club</a>
+      <a href="/contact.html">Contact Us</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a>nexusclub@apex.edu.in</a>
+      <a>+91 98765 43210</a>
+      <a>APEX University, Pune</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 NEXUS Club, APEX University. All rights reserved.</span>
+    <span>Made with ❤️ by the NEXUS Team</span>
+  </div>
+</footer>
+
+<script src="/script.js"></script>
+</body>
+</html>

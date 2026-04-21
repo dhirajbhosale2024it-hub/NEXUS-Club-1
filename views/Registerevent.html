@@ -1,0 +1,321 @@
+Register event · HTML
+Copy
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register for Event – IT Tech Club</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f1a;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    .card {
+      background: #1a1a2e;
+      border: 1px solid #2a2a4a;
+      border-radius: 16px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    .badge {
+      text-align: center;
+      font-size: 11px;
+      color: #7c7caa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 { font-size: 22px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 4px; }
+
+    #event-name {
+      text-align: center;
+      color: #7b61ff;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      min-height: 22px;
+    }
+
+    .event-meta {
+      text-align: center;
+      font-size: 13px;
+      color: #6060a0;
+      margin-bottom: 28px;
+      min-height: 18px;
+    }
+
+    /* User info box */
+    .user-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #12122a;
+      border: 1px solid #2a2a4a;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+
+    .avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7b61ff, #5e43d8);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+
+    .user-details { flex: 1; }
+    .user-details .uname { font-size: 14px; font-weight: 600; color: #e0e0e0; }
+    .user-details .uemail { font-size: 12px; color: #6060a0; margin-top: 2px; }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: #1e1e40;
+      color: #7b61ff;
+      border: 1px solid #3a3a6a;
+      text-transform: capitalize;
+    }
+
+    /* Login required state */
+    .login-prompt {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .login-prompt p {
+      color: #9090b0;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 11px 28px;
+      background: linear-gradient(135deg, #7b61ff, #5e43d8);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    button.btn-primary { width: 100%; margin-top: 10px; }
+
+    .btn-cancel {
+      display: inline-block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 11px;
+      background: transparent;
+      color: #f87171;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid #4a2020;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-cancel:hover { background: #2a1010; }
+
+    #message {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+    }
+
+    #message.success { background: #0d3321; border: 1px solid #1a6640; color: #4ade80; display: block; }
+    #message.error   { background: #330d0d; border: 1px solid #661a1a; color: #f87171; display: block; }
+    #message.info    { background: #0d1a33; border: 1px solid #1a3366; color: #60a5fa; display: block; }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #7c7caa;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .back-link:hover { color: #7b61ff; }
+
+    .divider { border: none; border-top: 1px solid #2a2a4a; margin: 20px 0; }
+
+    #loading-state { text-align: center; color: #6060a0; font-size: 14px; padding: 20px 0; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="badge">IT Tech Club</div>
+  <h1>Event Registration</h1>
+  <div id="event-name">Loading…</div>
+  <div class="event-meta" id="event-meta"></div>
+
+  <div id="loading-state">Checking your session…</div>
+  <div id="main-content" style="display:none"></div>
+
+  <div id="message"></div>
+  <a class="back-link" href="events.html">← Back to Events</a>
+</div>
+
+<script>
+  const params  = new URLSearchParams(window.location.search);
+  const eventId = params.get("event");
+
+  let currentEvent = null;
+  let currentUser  = null;
+
+  async function init() {
+    if (!eventId) {
+      document.getElementById("event-name").textContent = "No event selected";
+      document.getElementById("loading-state").textContent = "Please select an event from the events page.";
+      return;
+    }
+
+    /* Fetch event + session in parallel */
+    try {
+      const [evRes, meRes] = await Promise.all([
+        fetch(`/api/events/${eventId}`),
+        fetch("/api/auth/me")
+      ]);
+
+      const evData = await evRes.json();
+      const meData = await meRes.json();
+
+      if (!evRes.ok || !evData.event_name) {
+        document.getElementById("event-name").textContent = "Event not found";
+        document.getElementById("loading-state").textContent = "This event does not exist.";
+        return;
+      }
+
+      currentEvent = evData;
+      currentUser  = meData.loggedIn ? meData.user : null;
+
+      /* Populate event info */
+      document.getElementById("event-name").textContent = evData.event_name;
+      document.title = `Register – ${evData.event_name}`;
+
+      const dateStr = evData.date
+        ? new Date(evData.date).toLocaleDateString("en-IN", { weekday:"long", year:"numeric", month:"long", day:"numeric" })
+        : "";
+      const timeStr = evData.time ? ` • ${evData.time}` : "";
+      const venueStr = evData.venue ? ` • ${evData.venue}` : "";
+      document.getElementById("event-meta").textContent = dateStr + timeStr + venueStr;
+
+      document.getElementById("loading-state").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+
+      renderContent();
+    } catch (err) {
+      document.getElementById("loading-state").textContent = "Failed to load. Please refresh.";
+    }
+  }
+
+  function renderContent() {
+    const container = document.getElementById("main-content");
+
+    if (!currentUser) {
+      /* Not logged in */
+      container.innerHTML = `
+        <div class="login-prompt">
+          <p>You need to be logged in to register for this event.</p>
+          <a class="btn-primary" href="/login.html?redirect=/register-event.html?event=${eventId}">
+            Log In to Register
+          </a>
+        </div>`;
+      return;
+    }
+
+    /* Logged in — show user card + register button */
+    const initial = currentUser.name.charAt(0).toUpperCase();
+    container.innerHTML = `
+      <p style="font-size:13px;color:#6060a0;margin-bottom:10px;">Registering as:</p>
+      <div class="user-box">
+        <div class="avatar">${initial}</div>
+        <div class="user-details">
+          <div class="uname">${escHtml(currentUser.name)}</div>
+          <div class="uemail">${escHtml(currentUser.email)}</div>
+        </div>
+        <span class="tag">${escHtml(currentUser.role)}</span>
+      </div>
+      <hr class="divider"/>
+      <button class="btn-primary" id="reg-btn" onclick="registerForEvent()">
+        Confirm Registration
+      </button>`;
+  }
+
+  async function registerForEvent() {
+    const btn = document.getElementById("reg-btn");
+    btn.disabled = true;
+    btn.textContent = "Registering…";
+
+    try {
+      const res  = await fetch(`/api/events/${eventId}/register`, { method: "POST" });
+      const data = await res.json();
+
+      if (data.success) {
+        showMessage(data.message, "success");
+        document.getElementById("main-content").innerHTML = `
+          <div style="text-align:center;padding:16px 0">
+            <div style="font-size:40px;margin-bottom:12px">🎉</div>
+            <p style="color:#4ade80;font-weight:600;font-size:15px">${escHtml(data.message)}</p>
+            <a href="/events.html" class="btn-primary" style="display:inline-block;margin-top:18px;text-decoration:none">
+              Browse More Events
+            </a>
+          </div>`;
+      } else {
+        showMessage(data.message, "error");
+        btn.disabled = false;
+        btn.textContent = "Confirm Registration";
+      }
+    } catch {
+      showMessage("Network error. Please try again.", "error");
+      btn.disabled = false;
+      btn.textContent = "Confirm Registration";
+    }
+  }
+
+  function showMessage(text, type) {
+    const el = document.getElementById("message");
+    el.textContent = text;
+    el.className = type;
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+      .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  }
+
+  init();
+</script>
+</body>
+</html>
